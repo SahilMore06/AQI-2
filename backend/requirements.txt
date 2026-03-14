@@ -1,0 +1,14 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-dotenv==1.0.0
+pymongo==4.6.0
+
+# For hardware mode (Raspberry Pi only)
+# gpiozero==2.0
+# RPi.GPIO==0.7.1
+# pyserial==3.5
+
+# For ML mode (optional)
+# ultralytics==8.0.200
+# opencv-python==4.8.1.78

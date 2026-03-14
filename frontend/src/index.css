@@ -1,0 +1,434 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    /* Gradient Button CSS Properties */
+    @property --pos-x {
+        syntax: '<percentage>';
+        initial-value: 11.14%;
+        inherits: false;
+    }
+
+    @property --pos-y {
+        syntax: '<percentage>';
+        initial-value: 140%;
+        inherits: false;
+    }
+
+    @property --spread-x {
+        syntax: '<percentage>';
+        initial-value: 150%;
+        inherits: false;
+    }
+
+    @property --spread-y {
+        syntax: '<percentage>';
+        initial-value: 180.06%;
+        inherits: false;
+    }
+
+    @property --color-1 {
+        syntax: '<color>';
+        initial-value: #000;
+        inherits: false;
+    }
+
+    @property --color-2 {
+        syntax: '<color>';
+        initial-value: #08012c;
+        inherits: false;
+    }
+
+    @property --color-3 {
+        syntax: '<color>';
+        initial-value: #4e1e40;
+        inherits: false;
+    }
+
+    @property --color-4 {
+        syntax: '<color>';
+        initial-value: #70464e;
+        inherits: false;
+    }
+
+    @property --color-5 {
+        syntax: '<color>';
+        initial-value: #88394c;
+        inherits: false;
+    }
+
+    @property --border-angle {
+        syntax: '<angle>';
+        initial-value: 20deg;
+        inherits: true;
+    }
+
+    @property --border-color-1 {
+        syntax: '<color>';
+        initial-value: hsla(340, 75%, 60%, 0.2);
+        inherits: true;
+    }
+
+    @property --border-color-2 {
+        syntax: '<color>';
+        initial-value: hsla(340, 75%, 40%, 0.75);
+        inherits: true;
+    }
+
+    @property --stop-1 {
+        syntax: '<percentage>';
+        initial-value: 37.35%;
+        inherits: false;
+    }
+
+    @property --stop-2 {
+        syntax: '<percentage>';
+        initial-value: 61.36%;
+        inherits: false;
+    }
+
+    @property --stop-3 {
+        syntax: '<percentage>';
+        initial-value: 78.42%;
+        inherits: false;
+    }
+
+    @property --stop-4 {
+        syntax: '<percentage>';
+        initial-value: 89.52%;
+        inherits: false;
+    }
+
+    @property --stop-5 {
+        syntax: '<percentage>';
+        initial-value: 100%;
+        inherits: false;
+    }
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: none;
+    }
+
+    html, body, #root {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #root {
+        overflow-y: auto;
+    }
+}
+
+/* Safe area insets for mobile notches / status bars */
+.safe-area-inset {
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+}
+
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* CPU Architecture Animation Styles */
+.cpu-architecture {
+    offset-anchor: 10px 0px;
+    animation: animation-path;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99);
+}
+
+.cpu-line-1 {
+    offset-path: path("M 10 20 h 79.5 q 5 0 5 5 v 30");
+    animation-duration: 5s;
+    animation-delay: 1s;
+}
+
+.cpu-line-2 {
+    offset-path: path("M 180 10 h -69.7 q -5 0 -5 5 v 40");
+    animation-delay: 6s;
+    animation-duration: 2s;
+}
+
+.cpu-line-3 {
+    offset-path: path("M 130 20 v 21.8 q 0 5 -5 5 h -25");
+    animation-delay: 4s;
+    animation-duration: 6s;
+}
+
+.cpu-line-4 {
+    offset-path: path("M 170 80 v -21.8 q 0 -5 -5 -5 h -65");
+    animation-delay: 3s;
+    animation-duration: 3s;
+}
+
+.cpu-line-5 {
+    offset-path: path("M 135 65 h 15 q 5 0 5 5 v 10 q 0 5 -5 5 h -39.8 q -5 0 -5 -5 v -35"
+        );
+    animation-delay: 9s;
+    animation-duration: 4s;
+}
+
+.cpu-line-6 {
+    offset-path: path("M 94.8 95 v -46");
+    animation-delay: 3s;
+    animation-duration: 7s;
+}
+
+.cpu-line-7 {
+    offset-path: path("M 88 88 v -15 q 0 -5 -5 -5 h -10 q -5 0 -5 -5 v -5 q 0 -5 5 -5 h 28"
+        );
+    animation-delay: 4s;
+    animation-duration: 4s;
+}
+
+.cpu-line-8 {
+    offset-path: path("M 30 30 h 25 q 5 0 5 5 v 6.5 q 0 5 5 5 h 35");
+    animation-delay: 3s;
+    animation-duration: 3s;
+}
+
+@keyframes animation-path {
+    0% {
+        offset-distance: 0%;
+    }
+
+    100% {
+        offset-distance: 100%;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Glass morphism utilities */
+.glass {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+}
+
+.glass-dark {
+    @apply backdrop-blur-xl bg-black/30 border border-white/10;
+}
+
+/* AQI Status colors */
+.aqi-good {
+    @apply text-green-500 bg-green-500/10 border-green-500/30;
+}
+
+.aqi-moderate {
+    @apply text-yellow-500 bg-yellow-500/10 border-yellow-500/30;
+}
+
+.aqi-unhealthy {
+    @apply text-orange-500 bg-orange-500/10 border-orange-500/30;
+}
+
+.aqi-very-unhealthy {
+    @apply text-red-500 bg-red-500/10 border-red-500/30;
+}
+
+.aqi-hazardous {
+    @apply text-purple-500 bg-purple-500/10 border-purple-500/30;
+}
+
+/* Glow effects */
+.glow-green {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+.glow-red {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Gradient Button Styles */
+@layer components {
+    .gradient-button {
+        @apply relative appearance-none cursor-pointer;
+        background: radial-gradient(var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
+                var(--color-1) var(--stop-1),
+                var(--color-2) var(--stop-2),
+                var(--color-3) var(--stop-3),
+                var(--color-4) var(--stop-4),
+                var(--color-5) var(--stop-5));
+        transition:
+            --pos-x 0.5s,
+            --pos-y 0.5s,
+            --spread-x 0.5s,
+            --spread-y 0.5s,
+            --color-1 0.5s,
+            --color-2 0.5s,
+            --color-3 0.5s,
+            --color-4 0.5s,
+            --color-5 0.5s,
+            --border-angle 0.5s,
+            --border-color-1 0.5s,
+            --border-color-2 0.5s,
+            --stop-1 0.5s,
+            --stop-2 0.5s,
+            --stop-3 0.5s,
+            --stop-4 0.5s,
+            --stop-5 0.5s;
+    }
+
+    .gradient-button::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(var(--border-angle),
+                var(--border-color-1),
+                var(--border-color-2));
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+
+    .gradient-button:hover {
+        --pos-x: 0%;
+        --pos-y: 91.51%;
+        --spread-x: 120.24%;
+        --spread-y: 103.18%;
+        --color-1: #c96287;
+        --color-2: #c66c64;
+        --color-3: #cc7d23;
+        --color-4: #37140a;
+        --color-5: #000;
+        --border-angle: 190deg;
+        --border-color-1: hsla(340, 78%, 90%, 0.1);
+        --border-color-2: hsla(340, 75%, 90%, 0.6);
+        --stop-1: 0%;
+        --stop-2: 8.8%;
+        --stop-3: 21.44%;
+        --stop-4: 71.34%;
+        --stop-5: 85.76%;
+    }
+
+    .gradient-button-variant {
+        --color-1: #000022;
+        --color-2: #1f3f6d;
+        --color-3: #469396;
+        --color-4: #f1ffa5;
+        --border-angle: 200deg;
+        --border-color-1: hsla(320, 75%, 90%, 0.6);
+        --border-color-2: hsla(320, 50%, 90%, 0.15);
+    }
+
+    .gradient-button-variant:hover {
+        --pos-x: 0%;
+        --pos-y: 95.51%;
+        --spread-x: 110.24%;
+        --spread-y: 110.2%;
+        --color-1: #000020;
+        --color-2: #f1ffa5;
+        --color-3: #469396;
+        --color-4: #1f3f6d;
+        --color-5: #000;
+        --stop-1: 0%;
+        --stop-2: 10%;
+        --stop-3: 35.44%;
+        --stop-4: 71.34%;
+        --stop-5: 90.76%;
+        --border-angle: 210deg;
+        --border-color-1: hsla(320, 75%, 90%, 0.2);
+        --border-color-2: hsla(320, 50%, 90%, 0.75);
+    }
+}

@@ -1,0 +1,41 @@
+# ===== Node =====
+node_modules/
+dist/
+npm-debug.log*
+yarn-error.log*
+
+# ===== Frontend build =====
+frontend/dist/
+frontend/node_modules/
+
+# ===== Backend =====
+__pycache__/
+*.pyc
+.env
+.venv/
+
+# ===== Android / Capacitor =====
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+frontend/android/
+frontend/android/.gradle/
+frontend/android/build/
+
+# ===== IDE =====
+.idea/
+.vscode/
+
+node_modules/
+frontend/node_modules/
+
+dist/
+build/
+.gradle/
+
+.env
+.vscode/
+.idea/
+
+*.log
