@@ -31,7 +31,7 @@ export function useAQISimulation(): AQIState {
   const [color, setColor] = useState('#00E676')
   const [pct, setPct] = useState(0.21)
   const [threshold, setThresholdState] = useState(100)
-  const [connected, setConnected] = useState(true)
+  const [connected, _setConnected] = useState(true)
   const [sensorCount, setSensorCount] = useState(0)
 
   // Debounced threshold setter with API call

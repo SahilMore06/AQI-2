@@ -36,5 +36,3 @@ function Ticker() {
 }
 
 export default Ticker
-
-export default Ticker

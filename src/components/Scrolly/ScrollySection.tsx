@@ -253,5 +253,3 @@ function ScrollySection() {
 }
 
 export default ScrollySection
-
-export default ScrollySection

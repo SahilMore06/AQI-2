@@ -50,7 +50,7 @@ function GlobeMesh() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useFrame((state, delta) => {
+  useFrame((state, _delta) => {
     if (!globeRef.current) return
 
     // Base rotation speed modified by scroll

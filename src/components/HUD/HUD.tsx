@@ -103,5 +103,3 @@ function HUD() {
 }
 
 export default HUD
-
-export default HUD

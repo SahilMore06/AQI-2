@@ -285,5 +285,3 @@ function FeaturesGrid() {
 }
 
 export default FeaturesGrid
-
-export default FeaturesGrid
