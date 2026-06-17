@@ -1,0 +1,261 @@
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:          #070D1A;
+  --surface:     #0F1729;
+  --dim:         #1A2535;
+  --border:      #1E3A5F;
+  --border-h:    #2E5A8F;
+  --text:        #F0F4FF;
+  --muted:       #8B9AB4;
+  --primary:     #4D94FF;
+  --primary-d:   #0066FF;
+  --accent:      #00FFCC;
+  --accent-d:    #00D4AA;
+  --good:        #00E676;
+  --moderate:    #FFE57F;
+  --unhealthy:   #FF9E40;
+  --vunhealthy:  #FF5252;
+  --hazardous:   #CE93D8;
+  --glass:       rgba(255,255,255,0.03);
+  --glass-h:     rgba(255,255,255,0.06);
+  --easing:      cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth scrolling delegated to Lenis — do NOT set scroll-behavior here */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--bg); }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  cursor: none;               /* custom cursor replaces default */
+}
+
+/* ── CRT SCANLINE OVERLAY ─────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.05) 2px,
+    rgba(0,0,0,0.05) 4px
+  );
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.35;
+}
+
+/* ── CUSTOM CURSOR ────────────────────────────────────── */
+#cursor-dot {
+  position: fixed;
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--accent);
+  transition: opacity 0.2s;
+}
+#cursor-ring {
+  position: fixed;
+  width: 28px; height: 28px;
+  border: 1px solid rgba(0, 255, 204, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.18s var(--easing), height 0.18s var(--easing),
+              border-color 0.18s;
+}
+body.cursor-hover #cursor-ring {
+  width: 44px; height: 44px;
+  border-color: var(--accent);
+}
+
+/* ── AMBIENT BACKGROUND BLOBS ─────────────────────────── */
+.ambient-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+.blob-1 {
+  width: 500px; height: 500px;
+  background: var(--primary-d);
+  opacity: 0.06;
+  top: -150px; left: -80px;
+  animation: blobDrift1 14s ease-in-out infinite;
+}
+.blob-2 {
+  width: 400px; height: 400px;
+  background: var(--accent-d);
+  opacity: 0.05;
+  bottom: 10%; right: -60px;
+  animation: blobDrift2 17s ease-in-out infinite;
+}
+
+/* ── GLASSMORPHIC CARD UTILITIES ──────────────────────── */
+.glass-card {
+  background: rgba(77, 148, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(77, 148, 255, 0.1);
+}
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.dock-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── HUD COMPONENT STYLES ─────────────────────────────── */
+.surface {
+  background: var(--surface);
+}
+
+.hud-main {
+  background: rgba(77, 148, 255, 0.02);
+  border-right: 1px solid var(--border);
+  transition: all 0.3s var(--easing);
+}
+.hud-main:hover {
+  background: rgba(77, 148, 255, 0.04);
+}
+
+.hud-cell {
+  background: rgba(255, 255, 255, 0.01);
+  transition: all 0.3s var(--easing);
+}
+.hud-cell:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ── TYPOGRAPHY UTILITIES ─────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(240, 244, 255, 0.2);
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── SECTION REVEAL UTILITIES ─────────────────────────── */
+.reveal-line {
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--primary), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
+}
+.split-hidden { overflow: hidden; }
+.split-inner  { display: block; transform: translateY(105%); will-change: transform; }
+.card-enter   { clip-path: inset(0 0 100% 0); opacity: 0; will-change: clip-path, opacity; }
+.from-left    { transform: translateX(-40px); opacity: 0; will-change: transform, opacity; }
+.from-bottom  { transform: translateY(30px);  opacity: 0; will-change: transform, opacity; }
+
+/* ── ENHANCED GLASSMORPHIC UTILITIES ──────────────────────── */
+.glass-hover {
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s var(--easing);
+}
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  transform: translateY(-1px);
+}
+
+.glass-h {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── INTERACTIVE ENHANCEMENTS ──────────────────────────── */
+.interactive-glow {
+  transition: box-shadow 0.3s var(--easing);
+}
+.interactive-glow:hover {
+  box-shadow: 0 0 30px rgba(77, 148, 255, 0.2);
+}
+
+/* ── LOADING STATES & ANIMATIONS ──────────────────────── */
+.pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.fade-in {
+  animation: fadeUp 0.6s var(--easing);
+}
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* ── KEYFRAMES ────────────────────────────────────────── */
+@keyframes blobDrift1 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(50px, 70px); }
+}
+@keyframes blobDrift2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(-40px, -50px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: var(--star-o, 0.5); }
+  50%       { opacity: 0.05; }
+}
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.7); }
+}
+@keyframes pingRing {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(0, 230, 118, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+}
+@keyframes blinkCaret {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes scrollBar {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
